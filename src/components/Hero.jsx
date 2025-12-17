@@ -1,23 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { UseNewsContext } from "../context/NewsContext";
 
 const Hero = () => {
+  const { news, setNews, fetchNews } = UseNewsContext();
+  console.log(news);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await fetchNews();
+      setNews(data?.articles);
+    })();
+  }, []);
   return (
-    <div className=" border p-2 rounded">
-      <div className="w-full h-50 aspect-square rounded overflow-hidden">
-        <img
-          src="https://plus.unsplash.com/premium_photo-1765709019390-172aae6717dc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyNXx8fGVufDB8fHx8fA%3D%3D"
-          alt=""
-          className="w-full h-full"
-        />
-      </div>
-      <div>
-        <h1>Title</h1>
-        <p className="line-clamp-2">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis
-          velit nesciunt cupiditate, aperiam, obcaecati in non eveniet, ducimus
-        </p>
-      </div>
-    </div>
+    <>
+      {news.map((item, index) => (
+        <div key={index} className=" border p-2 rounded text-white">
+          <div className="w-full h-fit  rounded overflow-hidden">
+            <img
+              src={item?.urlToImage}
+              alt=""
+              className="aspect-video object-center"
+            />
+          </div>
+          <div>
+            <h1 className="line-clamp-1 text-2xl font-semibold mt-2">
+              {item?.title}
+            </h1>
+            <p className="line-clamp-3">{item?.description}</p>
+          </div>
+          <button
+            onClick={() => window.open(item.url, "_blank")}
+            className="bg-rose-500 px-6 py-2 rounded"
+          >
+            Read More
+          </button>
+        </div>
+      ))}
+    </>
   );
 };
 

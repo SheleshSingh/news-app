@@ -1,4 +1,3 @@
-import React from "react";
 
 const Button = () => {
   const buttonArr = [
@@ -23,4 +22,3 @@ const Button = () => {
 
 export default Button;
 
-// business entertainment general health science sports technology
