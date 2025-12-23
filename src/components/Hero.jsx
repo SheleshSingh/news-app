@@ -29,7 +29,7 @@ const Hero = () => {
             <p className="line-clamp-3">{item?.description}</p>
           </div>
           <button
-            onClick={() => window.open(item.url, "_blank")}
+            onClick={() => window.open(item?.url, "_blank")}
             className="bg-rose-500 px-6 py-2 rounded"
           >
             Read More

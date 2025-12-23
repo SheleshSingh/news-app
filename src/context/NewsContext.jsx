@@ -1,15 +1,17 @@
-import axios from "axios";
 import { createContext, useContext, useState } from "react";
+import api from "../config/axios";
 
 const NewsContext = createContext();
 
 const NewsContextProvider = ({ children }) => {
   const [news, setNews] = useState([]);
 
-  const fetchNews = async () => {
-    const res = axios(
-      "https://newsapi.org/v2/everything?q=bitcoin&apiKey=9bb6b7a6373e4a7aae61c33c83b3c860"
-    );
+  const fetchNews = async (url = "everything?q=sports") => {
+    // const res = axios(
+    //   // "https://newsapi.org/v2/everything?q=sports&apiKey=9bb6b7a6373e4a7aae61c33c83b3c860"
+
+    // );
+    const res = api.get(`${url}&apiKey=${import.meta.env.VITE_API_KEY}`);
     return res;
   };
 
