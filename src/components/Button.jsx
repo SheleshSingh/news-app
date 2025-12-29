@@ -13,12 +13,12 @@ const Button = () => {
   ];
   const handleClick = async (e) => {
     const cat = e.target.value;
-    const data = await fetchNews(`everything?q=${cat}`);
+    const { data } = await fetchNews(`/everything?q=${cat}`);
     setNews(data?.articles);
   };
   return (
     <div className="bg-slate-500 flex gap-5 p-3 rounded-b mb-5">
-      {buttonArr.map((item) => (
+      {buttonArr?.map((item) => (
         <button
           key={item}
           value={item}

@@ -6,7 +6,7 @@ const NewsContext = createContext();
 const NewsContextProvider = ({ children }) => {
   const [news, setNews] = useState([]);
 
-  const fetchNews = async (url = "everything?q=sports") => {
+  const fetchNews = async (url = "/everything?q=sports") => {
     // const res = axios(
     //   // "https://newsapi.org/v2/everything?q=sports&apiKey=9bb6b7a6373e4a7aae61c33c83b3c860"
 
